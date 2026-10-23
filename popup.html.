@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shield AdBlocker</title>
+  <style>
+    body {
+      width: 260px;
+      padding: 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101827;
+      color: #f1f5f9;
+      text-align: center;
+    }
+
+    h2 {
+      color: #6ee7b7;
+      margin-top: 0;
+    }
+
+    p {
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #6ee7b7;
+      color: #101827;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #status {
+      margin-top: 14px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>🛡️ Shield</h2>
+  <p>Take control of unwanted ads.</p>
+
+  <button id="toggle">Loading...</button>
+  <p id="status">Checking protection...</p>
+
+  <script src="popup.js"></script>
+</body>
+</html>
