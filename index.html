@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shield | Ad Blocker</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #f4f7ff;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 24px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #27314a;
+    }
+
+    .logo {
+      color: #75f0bd;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .badge {
+      color: #75f0bd;
+      background: #16372f;
+      padding: 8px 13px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    main {
+      width:  min(100% - 32px, 950px);
+      margin: 45px auto;
+    }
+
+    .welcome {
+      margin-bottom: 28px;
+    }
+
+    .welcome h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      margin-bottom: 10px;
+    }
+
+    .welcome p, .muted {
+      color: #aab5ce;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #151e32;
+      border: 1px solid #293650;
+      padding: 24px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .number {
+      font-size: 36px;
+      color: #75f0bd;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 17px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .primary {
+      background: #75f0bd;
+      color: #0b1020;
+    }
+
+    .secondary {
+      background: #28344c;
+      color: white;
+      margin-top: 12px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      background: #75f0bd;
+      border-radius: 50%;
+    }
+
+    .off {
+      background: #ff7474;
+    }
+
+    .sample-ad {
+      padding: 16px;
+      background: #302439;
+      border: 1px solid #704366;
+      border-radius: 12px;
+      margin: 12px 0;
+    }
+
+    .sample-ad strong {
+      color: #ffb3df;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .sample-ad p {
+      margin-top: 7px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .notice {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #aab5ce;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      color: #8490a9;
+      padding: 30px 15px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">🛡️ Shield</div>
+    <div class="badge">PERSONAL PROTECTION</div>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <h1>Browse with more peace.</h1>
+      <p>Your control centre for a cleaner, less distracting web.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Protection status</h2>
+        <div class="status">
+          <span class="dot" id="statusDot"></span>
+          <strong id="statusText">Demo protection is ON</strong>
+        </div>
+        <p class="muted" id="statusDescription">
+          Ready to test sample ads below.
+        </p>
+        <button class="primary" id="toggleButton">
+          Turn demo OFF
+        </button>
+      </div>
+
+      <div class="card">
+        <h2>Sample ads hidden</h2>
+        <div class="number" id="blockedCount">0</div>
+        <p class="muted">Ads hidden in this demo session.</p>
+      </div>
+
+      <div class="card">
+        <h2>Your privacy</h2>
+        <p class="muted">
+          Shield's demo runs locally in this page. It does not
+          inspect your browsing history or send your activity anywhere.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>🧪 Test your protection</h2>
+      <p class="muted">
+        These are fictional advertisements created for testing.
+      </p>
+
+      <div class="sample-ad">
+        <strong>ADVERTISEMENT</strong>
+        <p>Buy the latest super sneakers today!</p>
+      </div>
+
+      <div class="sample-ad">
+        <strong>SPONSORED</strong>
+        <p>Try this amazing imaginary energy drink!</p>
+      </div>
+
+      <div class="sample-ad">
+        <strong>ADVERTISEMENT</strong>
+        <p>You've won a fictional prize! Just kidding.</p>
+      </div>
+
+      <button class="primary" id="scanButton">
+        Hide sample ads
+      </button>
+
+      <button class="secondary" id="resetButton">
+        Reset demo
+      </button>
+
+      <p class="notice" id="message" aria-live="polite">
+        Click "Hide sample ads" to test the demo.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>What's next?</h2>
+      <p class="muted">
+        This is the first version of Shield. Real ad blocking
+        across other websites requires a browser extension with
+        appropriate permissions and filtering rules.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Shield AdBlocker · A learning project built with HTML, CSS and JavaScript.
+  </footer>
+
+  <script>
+    let protectionOn = true;
+    let blockedTotal = 0;
+
+    const statusText = document.getElementById("statusText");
+    const statusDescription =
+      document.getElementById("statusDescription");
+    const statusDot = document.getElementById("statusDot");
+    const toggleButton = document.getElementById("toggleButton");
+    const blockedCount = document.getElementById("blockedCount");
+    const message = document.getElementById("message");
+
+    toggleButton.addEventListener("click", function () {
+      protectionOn = !protectionOn;
+
+      statusText.textContent = protectionOn
+        ? "Demo protection is ON"
+        : "Demo protection is OFF";
+
+      statusDescription.textContent = protectionOn
+        ? "Ready to test sample ads below."
+        : "Sample ads will no longer be hidden by the demo.";
+
+      toggleButton.textContent = protectionOn
+        ? "Turn demo OFF"
+        : "Turn demo ON";
+
+      statusDot.classList.toggle("off", !protectionOn);
+
+      message.textContent = protectionOn
+        ? "Demo protection enabled."
+        : "Demo protection disabled.";
+    });
+
+    document.getElementById("scanButton").addEventListener(
+      "click",
+      function () {
+        if (!protectionOn) {
+          message.textContent =
+            "Turn demo protection ON before hiding sample ads.";
+          return;
+        }
+
+        const ads = document.querySelectorAll(
+          ".sample-ad:not(.hidden)"
+        );
+
+        if (ads.length === 0) {
+          message.textContent =
+            "No visible sample ads left. Try Reset demo!";
+          return;
+        }
+
+        ads.forEach(function (ad) {
+          ad.classList.add("hidden");
+        });
+
+        blockedTotal += ads.length;
+        blockedCount.textContent = blockedTotal;
+
+        message.textContent =
+          "Success! Hidden " + ads.length +
+          " sample ads. This only affects this demo page.";
+      }
+    );
+
+    document.getElementById("resetButton").addEventListener(
+      "click",
+      function () {
+        document.querySelectorAll(".sample-ad").forEach(
+          function (ad) {
+            ad.classList.remove("hidden");
+          }
+        );
+
+        blockedTotal = 0;
+        blockedCount.textContent = "0";
+        message.textContent =
+          "Demo reset. All sample ads are visible again.";
+      }
+    );
+  </script>
+</body>
+</html>
